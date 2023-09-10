@@ -35,8 +35,8 @@ tfidf = TfidfVectorizer(stop_words='english', max_features=3000)
 string_matrix = tfidf.fit_transform(df['combined_string'])
 print(string_matrix)
 
-#####################################################################################################
-#generate a new mapping series called "pd.Series" which uses movie title as indexing instead of 0-len(df.column), the original index will be come the value now/kinda like switching places.
+#########################################################################
+#generate a new mapping series called "movie2idx" which uses the movie title as index, the original index will become the value now (like switching places.)
 movie2idx = pd.Series(df.index, index=df['title'])
 # print(movie2idx)
 
@@ -66,7 +66,6 @@ plt.show()
 
 #get to 5 matches, and remember to exclude oneself
 recommended_idx = (-scores).argsort()[1:6]
-
 
 #convert the recommended index back to the title
 df['title'].iloc[recommended_idx]
